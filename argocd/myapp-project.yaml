@@ -19,19 +19,15 @@ spec:
   - namespace: '*'
     server: https://kubernetes.default.svc
 
-  # Deny all cluster-scoped resources from being created, except for Namespace
+  # Deny all cluster-scoped resources from being created, except for named items
   clusterResourceWhitelist:
   - group: ''
-    kind: Namespace
-  - group: ''
-    kind: ClusterRole
-  - group: ''
-    kind: ClusterRoleBinding    
+    kind: '*'  
 
-  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  # Allow all namespaced-scoped resources to be created except named items
   namespaceResourceBlacklist:
 
-  # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
+  # Deny all namespaced-scoped resources from being created, except for named items
   namespaceResourceWhitelist:
 
   # Enables namespace orphaned resource monitoring.
