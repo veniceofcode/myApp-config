@@ -3,3 +3,4 @@ resources:
 - myapp-ci.yaml
 - env/myapp-cd-development.yaml
 - env/myapp-cd-qa.yaml
+- myapp-project.yaml
