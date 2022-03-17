@@ -22,7 +22,7 @@ spec:
   # Deny all cluster-scoped resources from being created, except for named items
   clusterResourceWhitelist:
   - group: ''
-    kind: namespace
+    kind: Namespace
   - group: 'rbac.authorization.k8s.io'
     kind: ClusterRole
   - group: 'rbac.authorization.k8s.io'
