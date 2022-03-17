@@ -30,7 +30,6 @@ spec:
     jsonPointers:
     - /spec/host
     kind: Route
-  project: default
   source:
     path: argocd
     repoURL: https://github.com/marrober/myApp-config.git

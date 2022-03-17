@@ -29,7 +29,6 @@ spec:
     jsonPointers:
     - /spec/host
     kind: Route
-  project: default
   source:
     path: env/02-qa
     repoURL: https://github.com/marrober/myApp-cd.git

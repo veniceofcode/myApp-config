@@ -29,7 +29,6 @@ spec:
     jsonPointers:
     - /spec/host
     kind: Route
-  project: default
   source:
     path: overlays
     repoURL: https://github.com/marrober/myApp-ci.git
