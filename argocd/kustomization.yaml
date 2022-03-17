@@ -1,5 +1,5 @@
 resources:
-- argocd/argo-app.yaml
-- argocd/myapp-ci.yaml
+- argo-app.yaml
+- myapp-ci.yaml
 - env/myapp-cd-development.yaml
 - env/myapp-cd-qa.yaml
