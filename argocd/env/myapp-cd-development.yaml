@@ -6,7 +6,7 @@ metadata:
 spec:
   project: myapp
   destination:
-    namespace: myapp-ci
+    namespace: myapp-development
     server: https://kubernetes.default.svc
   ignoreDifferences:
   - group: argoproj.io
