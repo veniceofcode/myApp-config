@@ -16,8 +16,10 @@ spec:
 
   # Limit the namespaces to which the project can deploy
   destinations:
-  - namespace: '*'
-    server: https://kubernetes.default.svc
+  - server: https://kubernetes.default.svc
+    namespace: '*'
+  - server: https://api.celeron.demolab.local:6443
+    namespace: '*'
 
   # Deny all cluster-scoped resources from being created, except for named items
   clusterResourceWhitelist:
@@ -26,7 +28,7 @@ spec:
   - group: 'rbac.authorization.k8s.io'
     kind: ClusterRole
   - group: 'rbac.authorization.k8s.io'
-    kind: ClusterRoleBinding    
+    kind: ClusterRoleBinding
 
   # Allow all namespaced-scoped resources to be created except named items
   namespaceResourceBlacklist:
