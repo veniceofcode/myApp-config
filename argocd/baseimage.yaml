@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-ci
+  name: base-image-dl
   namespace: openshift-gitops
 spec:
-  project: myapp
+  project: myapp-dl
   destination:
-    namespace: myapp-ci
+    namespace: myapp-ci-dl
     server: https://kubernetes.default.svc
   ignoreDifferences:
   - group: argoproj.io
@@ -30,7 +30,7 @@ spec:
     - /spec/host
     kind: Route
   source:
-    path: main-ci
+    path: base-image
     repoURL: https://github.com/marrober/myApp-ci.git
   syncPolicy:
     automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.

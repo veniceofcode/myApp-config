@@ -6,7 +6,7 @@ metadata:
 spec:
   project: myapp
   destination:
-    namespace: myapp-ci
+    namespace: myapp-pre-production
     server: https://api.celeron.demolab.local:6443
   ignoreDifferences:
   - group: argoproj.io
