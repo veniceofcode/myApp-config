@@ -1,9 +1,19 @@
 FROM fedora
 
+USER root
+
+RUN curl -sLk https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz | tar xzC /usr/local/bin
+
+RUN mkdir /workspace && chmod 777 workspace
+
+# RUN yum -y install siege
+
+RUN curl -sL -o /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.25.1/yq_linux_amd64 &&  mv /tmp/yq /usr/local/bin/yq && chmod a+x /usr/local/bin/yq
+
 ##----------------------------------
 # Install git command line
 # 
-# RUN dnf install -y git
+RUN dnf install -y git
 ##----------------------------------
 
 ##----------------------------------
@@ -88,3 +98,14 @@ RUN  dnf update -y
 # ADD ./kubectl-slice/README.md /usr/local/bin/kubectl-slice-README.md
 # RUN chmod u+x /usr/local/bin/kubectl-slice
 ##--------------------------------
+
+WORKDIR /workspace
+
+EXPOSE 8080
+
+USER 1001
+
+ENV HOME=/workspace
+
+ENTRYPOINT ["/usr/local/bin/gotty"]
+CMD ["-w","bash"]
