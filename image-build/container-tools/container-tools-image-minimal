@@ -1,0 +1,41 @@
+FROM fedora
+
+USER root
+
+RUN curl -sLk https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz | tar xzC /usr/local/bin
+
+RUN mkdir /workspace && chmod 777 workspace
+
+RUN curl -sL -o /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.25.1/yq_linux_amd64 &&  mv /tmp/yq /usr/local/bin/yq && chmod a+x /usr/local/bin/yq
+
+##----------------------------------
+# Install git command line
+# 
+RUN dnf install -y git
+##----------------------------------
+
+##----------------------------------
+# Install the OpenShift oc command line
+# 
+RUN curl -sL -o /tmp/oc.tar.gz https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz && \
+tar -C /tmp -xf /tmp/oc.tar.gz --no-same-owner && \
+mv /tmp/oc /usr/local/bin && \
+chmod +x /usr/local/bin/oc && \
+rm /tmp/*
+##----------------------------------
+
+##----------------------------------
+# Update all packages
+RUN  dnf update -y
+##----------------------------------
+
+WORKDIR /workspace
+
+EXPOSE 8080
+
+USER 1001
+
+ENV HOME=/workspace
+
+ENTRYPOINT ["/usr/local/bin/gotty"]
+CMD ["-w","bash"]

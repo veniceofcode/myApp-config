@@ -6,7 +6,7 @@ RUN curl -sLk https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linu
 
 RUN mkdir /workspace && chmod 777 workspace
 
-# RUN yum -y install siege
+RUN yum -y install siege
 
 RUN curl -sL -o /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.25.1/yq_linux_amd64 &&  mv /tmp/yq /usr/local/bin/yq && chmod a+x /usr/local/bin/yq
 
@@ -19,16 +19,16 @@ RUN dnf install -y git
 ##----------------------------------
 # Install gh command line for generating GitHub pull requests etc. 
 # 
-# RUN dnf install -y 'dnf-command(config-manager)' && \
-# dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && \
-# dnf install -y gh
+RUN dnf install -y 'dnf-command(config-manager)' && \
+dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && \
+dnf install -y gh
 ##----------------------------------
 
 ##----------------------------------
 # Install the ArgoCD command line
 # 
-# RUN curl -LJO --silent https://github.com/argoproj/argo-cd/releases/download/v2.3.3/argocd-linux-amd64 && \
-# mv /argocd-linux-amd64 /usr/local/bin/argocd && chmod u+x /usr/local/bin/argocd
+RUN curl -LJO --silent https://github.com/argoproj/argo-cd/releases/download/v2.3.3/argocd-linux-amd64 && \
+mv /argocd-linux-amd64 /usr/local/bin/argocd && chmod u+x /usr/local/bin/argocd
 ##----------------------------------
 
 ##----------------------------------
@@ -44,25 +44,25 @@ rm /tmp/*
 ##----------------------------------
 # Install Tekton command line
 # 
-# RUN curl -sL -o /tmp/tkn.tar.gz https://github.com/tektoncd/cli/releases/download/v0.23.1/tkn_0.23.1_Linux_x86_64.tar.gz && \
-# tar -C /tmp -xf /tmp/tkn.tar.gz --no-same-owner && \
-# mv /tmp/tkn /usr/local/bin && \
-# chmod +x /usr/local/bin/tkn && \
-# rm /tmp/*
+RUN curl -sL -o /tmp/tkn.tar.gz https://github.com/tektoncd/cli/releases/download/v0.23.1/tkn_0.23.1_Linux_x86_64.tar.gz && \
+tar -C /tmp -xf /tmp/tkn.tar.gz --no-same-owner && \
+mv /tmp/tkn /usr/local/bin && \
+chmod +x /usr/local/bin/tkn && \
+rm /tmp/*
 ##----------------------------------
 
 ##----------------------------------
 # Install the odo command line
 #
-# RUN curl -sL -o /usr/local/bin/odo https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 && \
-# chmod +x /usr/local/bin/odo
+RUN curl -sL -o /usr/local/bin/odo https://mirror.openshift.com/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 && \
+chmod +x /usr/local/bin/odo
 ##----------------------------------
 
 ##----------------------------------
 # Install the KNative command line
 #
-# RUN curl -sL -o /usr/local/bin/kn https://storage.googleapis.com/knative-nightly/client/latest/kn-linux-amd64 && \
-# chmod +x /usr/local/bin/kn
+RUN curl -sL -o /usr/local/bin/kn https://storage.googleapis.com/knative-nightly/client/latest/kn-linux-amd64 && \
+chmod +x /usr/local/bin/kn
 ##----------------------------------
 
 ##----------------------------------
@@ -73,30 +73,30 @@ RUN  dnf update -y
 ##----------------------------------
 # Install podman, buildah and skopeo
 #
-# RUN dnf -y install podman container-selinux
-# RUN dnf -y install buildah container-selinux
-# RUN dnf -y install skopeo container-selinux 
+RUN dnf -y install podman container-selinux
+RUN dnf -y install buildah container-selinux
+RUN dnf -y install skopeo container-selinux 
 ##----------------------------------
 
 ##----------------------------------
 # Install Java compiler and runtime
 #
-# RUN dnf -y install java-1.8.0-openjdk java-11-openjdk java-1.8.0-openjdk-devel wget
+RUN dnf -y install java-1.8.0-openjdk java-11-openjdk java-1.8.0-openjdk-devel wget
 ##----------------------------------
 
 ##----------------------------------
 # Install Kustomize command line
 #
-# RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" >> kustomize.sh && \ 
-# chmod u+x kustomize.sh && ./kustomize.sh && mv /kustomize /usr/local/bin/kustomize
+RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" >> kustomize.sh && \ 
+chmod u+x kustomize.sh && ./kustomize.sh && mv /kustomize /usr/local/bin/kustomize
 ##----------------------------------
 
 ##----------------------------------
 # Add the kubectl-slice command line
-# ADD ./kubectl-slice/kubectl-slice /usr/local/bin/kubectl-slice
-# ADD ./kubectl-slice/LICENSE /usr/local/bin/kubectl-slice-LICENSE
-# ADD ./kubectl-slice/README.md /usr/local/bin/kubectl-slice-README.md
-# RUN chmod u+x /usr/local/bin/kubectl-slice
+ADD ./kubectl-slice/kubectl-slice /usr/local/bin/kubectl-slice
+ADD ./kubectl-slice/LICENSE /usr/local/bin/kubectl-slice-LICENSE
+ADD ./kubectl-slice/README.md /usr/local/bin/kubectl-slice-README.md
+RUN chmod u+x /usr/local/bin/kubectl-slice
 ##--------------------------------
 
 WORKDIR /workspace
