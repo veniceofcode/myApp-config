@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: base-image-dl
+  name: base-image
   namespace: openshift-gitops
 spec:
-  project: myapp-dl
+  project: myapp
   destination:
-    namespace: myapp-ci-dl
+    namespace: myapp-ci
     server: https://kubernetes.default.svc
   ignoreDifferences:
   - group: argoproj.io
