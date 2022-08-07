@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- argo-app.yaml
+- chris-ui-ci.yaml
+- chris-ui-ci-production.yaml
+- env/chris-ui-cd-development.yaml
+- env/chris-ui-cd-qa.yaml
+- env/chris-ui-cd-production.yaml
+- chris-project.yaml
+- baseimage.yaml
